@@ -18,11 +18,7 @@
 
             if ($row["rol"] == 0) {
                 $_SESSION['ruta'] = 'user';
-                header("Location:".VIEWS_PATH."");
-            }
-            if ($row["rol"] == 1) {
-                $_SESSION['ruta'] = 'admin';
-                header("Location:".VIEWS_PATH."");
+                header("Location:".VIEWS_PATH."user_home/index.php");
             }
         }
     } else {
