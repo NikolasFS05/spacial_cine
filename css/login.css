@@ -1,64 +1,90 @@
-* {
+
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+/* body{
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../asset/fondo.jpg");
-}
+    background-color: #4070f4;
+} */
 
-.container {
+.container.login{
     position: relative;
     max-width: 430px;
     width: 100%;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 5px 10 px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0 20px;
+    margin-left: 35%;
+    margin-top: 5%;
 }
 
-.container .forms {
+.container.login .forms{
     display: flex;
     align-items: center;
     height: 440px;
     width: 200%;
+    transition: height 0.2s ease;
 }
 
-.container .form {
+
+.container.login .form{
     width: 50%;
     padding: 30px;
+    background-color: #fff;
+    transition: margin-left 0.18s ease;
 }
 
-.container .form .tittle {
+.container.login.active .login{
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.18s ease, opacity 0.15s ease;
+}
+
+.container.login .signup{
+    opacity: 0;
+    transition: opacity 0.09s ease;
+}
+.container.login.active .signup{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.container.login.active .forms{
+    height: 600px;
+}
+.container.login .form .title{
     position: relative;
     font-size: 27px;
     font-weight: 600;
 }
 
-.form .tittle::before {
+.form .title::before{
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: #24303c;
+    background-color: #4070f4;
     border-radius: 25px;
 }
 
-.form .input-field {
-    background-color: red;
+.form .input-field{
     position: relative;
     height: 50px;
     width: 100%;
     margin-top: 30px;
 }
 
-.input-field input {
+.input-field input{
     position: absolute;
     height: 100%;
     width: 100%;
@@ -71,156 +97,83 @@ body {
     transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid) {
-    border-bottom-color: #24303c;
+.input-field input:is(:focus, :valid){
+    border-bottom-color: #4070f4;
 }
 
-.input-field i {
+.input-field i{
     position: absolute;
     top: 50%;
-    left: 0;
     transform: translateY(-50%);
     color: #999;
     font-size: 23px;
+    transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid)~i {
-    color: #24303c;
+.input-field input:is(:focus, :valid) ~ i{
+    color: #4070f4;
 }
 
-.input-field i.icon {
+.input-field i.icon{
     left: 0;
 }
-
-.input-field i.showHidePw {
-    margin-left: 90%;
+.input-field i.showHidePw{
     right: 0;
     cursor: pointer;
     padding: 10px;
 }
 
-.form .checkbox-text {
+.form .checkbox-text{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.checkbox-text .checkbox-content {
+.checkbox-text .checkbox-content{
     display: flex;
     align-items: center;
 }
 
-.checkbox-content input {
+.checkbox-content input{
     margin: 0 8px -2px 4px;
     accent-color: #4070f4;
 }
 
-.form .text {
+.form .text{
     color: #333;
     font-size: 14px;
 }
 
-.form a .text {
+.form a.text{
     color: #4070f4;
     text-decoration: none;
 }
-
-.form a:hover {
+.form a:hover{
     text-decoration: underline;
 }
 
-.form .button {
+.form .button{
     margin-top: 35px;
 }
 
-.form .button input {
+.form .button input{
     border: none;
-    background-color: #24303c;
+    color: #fff;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 6px;
-    color: #fff;
+    background-color: #4070f4;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.button input:hover {
-    background-color: #24303c;
+.button input:hover{
+    background-color: #265df2;
 }
 
-.form .login-signup {
+.form .login-signup{
     margin-top: 30px;
     text-align: center;
 }
-
-/* Antiguo codigo */
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-image: url('../asset/fondo.jpg');
-}
-
- .form-login {
-    width: 600px;
-    background: #24303c;
-    padding: 40px;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 4px;
-    font-family: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
-} 
-
-.form-login h1 {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-.form-control {
-    width: 100%;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-}
-
-.form-login p{
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
-}
-
-.form-login a {
-    color: white;
-    text-decoration: none;
-}
-
-.form-login a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-.form-login .button {
-    width: 100%;
-    background: #1f53c5;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
-}
-
-h1 {
-    color: white;
-} */

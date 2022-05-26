@@ -12,16 +12,18 @@
 
     if ($result -> num_rows > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            session_start();
-            $_SESSION["id_usuario"] = $row["id"];
-            $_SESSION["correo"] = $row["correo"];
+            // session_start();
+            // $_SESSION["nombre"] = $row["nombres"];
+            // $_SESSION["correo"] = $row["correo"];
 
             if ($row["rol"] == 0) {
                 $_SESSION['ruta'] = 'user';
-                header("Location:".VIEWS_PATH."user_home/index.php");
+                header("Location:".VIEWS_PATH."user_index.php?user=welcome");
+            } else if ($row["rol"] == 1) {
+                $_SESSION['ruta'] = 'admin';
+                header("Location:".VIEWS_PATH."admin_index.php?admin=welcome");
             }
         }
     } else {
         header("Location:".VIEWS_PATH."login.php?info=datosI");
     }
-?>

@@ -30,26 +30,28 @@ require_once(CONTROLLER_PATH . "control_movie.php");
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link active" href="<?php echo VIEWS_PATH . "index.php"; ?>"><i class="bx bx-home"></i> Inicio</a>
+                                <a role="menuitem" class="nav-link active" href="<?php echo VIEWS_PATH . "user_index.php"; ?>"><i class="bx bx-home"></i> Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "cine_movie.php"; ?>"><i class='bx bx-movie'></i> Cartelera</a>
+                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "user_cine_movie.php"; ?>"><i class='bx bx-movie'></i> Cartelera</a>
                             </li>
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "cine_soon.php"; ?>"> Estrenos</a>
+                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "user_cine_soon.php"; ?>"> Estrenos</a>
                             </li>
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "cine_food.php"; ?>"><i class='bx bx-food-menu'></i> Confiteria</a>
+                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "user_cine_food.php"; ?>"><i class='bx bx-food-menu'></i> Confiteria</a>
                             </li>
                         </ul>
                         <!-- Funciones de registro e ingreso -->
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "login.php"; ?>"><i class="bx bx-log-in"></i> Ingreso</a>
+                                <!-- <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "login.php"; ?>"><i class="bx bx-log-in"></i> Ingreso</a> -->
                             </li>
                             <li class="nav-item">
-                                <a role="menuitem" class="nav-link" href="<?php echo VIEWS_PATH . "register.php"; ?>"><i class="bx bx-user"></i> Registro</a>
+                                <a class="nav-link" href="<?php echo VIEWS_PATH; ?>login.php?info=salida"><i class="bx bx-log-out"></i> Cerrar sesión</a>
                             </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -89,7 +91,7 @@ require_once(CONTROLLER_PATH . "control_movie.php");
             </button>
         </div>
         <br>
-        <h3 class="sub">En cartelera</h3>
+        <h2 class="sub">En cartelera</h2>
         <div class="row">
             <?php
             $result = obtenerPeliculasDisponibles();
@@ -98,25 +100,27 @@ require_once(CONTROLLER_PATH . "control_movie.php");
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
                     <div class="col-md-4">
+                        <form id="formulario" name="formulario" method="POST">
+                            <div class="card">
+                                <img src="../asset/peliculas/<?php echo $row['img'] ?>" class="card-img-top" alt="Imagen de pelicula">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['titulo']; ?></h5>
+                                </div>
 
-                        <div class="card">
-                            <img src="../asset/peliculas/<?php echo $row['img'] ?>" class="card-img-top" alt="Imagen de pelicula">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['titulo']; ?></h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Precio entrada: $<?php echo $row['precio'] ?></li>
-                                <li class="list-group-item">Estreno: <?php echo $row['fecha_estreno'] ?></li>
-                                <li class="list-group-item">Genero: <?php echo $row['genero'] ?></li>
-                            </ul>
-                            <div class="card-body">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover focus" data-bs-content="¡Lo sentimos, estamos en mantenimiento!">
-                                    <button class="btn btn-success" type="submit" disabled>Comprar boleta</button>
-                                </span>
-                            </div>
-                        </div>
-                        <br>
+                                <ul class="list-group list-group-flush">
+                                    <input name="titulo" type="hidden" id="titulo" value="<?php echo $row['titulo']; ?>">
+                                    <input name="precio" type="hidden" id="precio" value="<?php echo $row['precio']; ?>">
+                                    <input name="cantidad" type="hidden" id="cantidad" value="1">
 
+                                    <li class="list-group-item">Estreno: <?php echo $row['fecha_estreno'] ?></li>
+                                    <li class="list-group-item">Genero: <?php echo $row['genero'] ?></li>
+                                </ul>
+                                <div class="card-body">
+                                    <button class="btn btn-success" name="btnAccion" value="agregar" type="submit"><i class="bx bx-cart"></i>Comprar entrada</button>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
                     </div>
             <?php
                 }
@@ -126,7 +130,6 @@ require_once(CONTROLLER_PATH . "control_movie.php");
         <hr>
         <br>
         <h2 class="sub">Proximamente</h2>
-
         <div class="row">
             <?php
             $result = obtenerPeliculasEspera();
@@ -141,7 +144,6 @@ require_once(CONTROLLER_PATH . "control_movie.php");
                                 <h5 class="card-title"><?php echo $row['titulo']; ?></h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Precio entrada: $<?php echo $row['precio'] ?></li>
                                 <li class="list-group-item">Estreno: <?php echo $row['fecha_estreno'] ?></li>
                                 <li class="list-group-item">Genero: <?php echo $row['genero'] ?></li>
                             </ul>

@@ -9,32 +9,50 @@ define('ASSET_PATH', '../asset/');
 include(VIEWS_PATH . "header.php");
 ?>
 
-<link rel="stylesheet" href="<?php echo CSS_PATH . "menu.css"; ?>">
+<link rel="stylesheet" href="<?php echo CSS_PATH . "index.css"; ?>">
 <link rel="stylesheet" href="<?php echo CSS_PATH . "register.css"; ?>">
 </head>
 
 <body>
-    <!-- Menú de navegación -->
-    <header class="header">
-        <div class="menu">
-            <nav role="navigation" class="nav">
-                <a href="#" class="logo nav-link"><img src="<?php echo ASSET_PATH . "logo.png"; ?>" alt="Logo de la marca"></a>
-                <h3>Spacial Cine</h3>
-                <button class="nav-toggle" aria-label="Abrir menú">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu">
-                    <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">Cartelera</a></li>
-                    <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">Estrenos</a></li>
-                    <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">Comidas</a></li>
-                    <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">Ingresar</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header role="menu">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#" style="margin-left: 45%; font-size: 35px;">Spacial Cine</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a role="main" class="nav-link" href="<?php echo VIEWS_PATH . "index.php"; ?>"><i class="bx bx-home"></i> Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="main" class="nav-link" href="<?php echo VIEWS_PATH . "cine_movie.php"; ?>"><i class='bx bx-movie'></i> Cartelera</a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="main" class="nav-link" href="<?php echo VIEWS_PATH . "cine_soon.php"; ?>"> Estrenos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="main" class="nav-link" href="<?php echo VIEWS_PATH . "cine_food.php"; ?>"><i class='bx bx-food-menu'></i> Confiteria</a>
+                            </li>
+                        </ul>
+                        <!-- Funciones de registro e ingreso -->
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a role="main" class="nav-link" href="<?php echo VIEWS_PATH . "login.php"; ?>"><i class="bx bx-log-in"></i> Ingreso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a role="main" class="nav-link active" href="<?php echo VIEWS_PATH . "register.php"; ?>"><i class="bx bx-user"></i> Registro</a>
+                            </li>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- Main -->
-    <div class="container">
+    <!-- Formulario de registro -->
+    <div class="container login" role="main">
         <div class="forms">
             <div class="form login">
                 <span class="tittle">Registrarse</span>
@@ -128,8 +146,8 @@ include(VIEWS_PATH . "header.php");
                 </div>
             </div>
         </div>
-    </div>
 
-    <?php
-    include(VIEWS_PATH . "footer.php");
-    ?>
+
+        <?php
+        include(VIEWS_PATH . "footer.php");
+        ?>
